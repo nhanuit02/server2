@@ -1,0 +1,11 @@
+{
+  "name": "server2",
+  "version": "1",
+  "description": "nothing",
+  "main": "server.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.13.0"
+  }
+}

@@ -5,7 +5,7 @@ const express = require('express');
 const { count } = require('console');
 const app = express();
 
-app.use(express.static('D:/Data/code/server2'));
+app.use(express.static('.'));
 const server = app.listen(8000, () => {
   console.log('Server is running on port 8000');
 });
@@ -56,6 +56,23 @@ wss.on('connection', (ws) => {
   ws.on('close', () => {
     clients.delete(ws);
   });
+  // ws.on('message', (message) => {
+  //   try {
+  //     const jsonData = JSON.parse(message.toString());
+  //     console.log("testtttt",jsonData);
+  //     const temperature = jsonData.temp;
+  //     const humidity = jsonData.humidity;
+  //     const gas = jsonData.gas;
+
+  //     const time = new Date().toLocaleDateString();
+  //     chart.data.labels.push(time);
+  //     chart.data.datasets[0].data.push(temperature);
+  //     chart.update();
+  //     broadcast(message, ws);
+  //   } catch (error){
+  //     //console.error('invalid json data', error);
+  //   }
+  // })
 });
 
 function broadcast(message, sender) {

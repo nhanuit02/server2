@@ -5,6 +5,7 @@
   <!-- Basic -->
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="icon" href="" type="image/x-icon"/>
   <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Site Metas -->
@@ -54,6 +55,7 @@
       socket.send(message);
       messageInput.value = '';
     }
+
   </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -142,45 +144,16 @@
           <div class="col-md-6">
             <div class="about_detail-box">
               <h3>
-                1st chart
+                Temperature Chart
               </h3>
-              <canvas id="chart" style="height: 250px; width: 100%;"></canvas>
+              <canvas id="temperatureChart"height: 250px; width: 100%;></canvas>
               <script>
-                const ctx = document.getElementById('chart').getContext('2d');
-                const chart = new Chart(ctx, {
-                  type :'line',
-                  data: {
-                    labels: [],
-                    datasets: [{
-                      label: 'temperature',
-                      data: [],
-                      backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                      borderColor: 'rgba(75, 192, 192, 1)',
-                      borderWidth: 1
-                    }]
-                  },
-                  options: {
-                    responsive: true,
-                    scales: {
-                      x: {
-                        display: true
-                      },
-                      y: {
-                        display: true
-                      }
-                    }
-                  }
-                });
+                //Temperature
+
             
                 //nhan du lieu
-                socket.addEventListener('message', (event) => {
-                  const data = event.data;
-                  const time = new Date().toLocaleDateString();
-                  chart.data.labels.push(time);
-                  chart.data.datasets[0].data.push(data);
-                  chart.update();
-                })
                 </script>
+              
               <div class="">
                 <a href="" class="call_to-btn btn_white-border">
                   Read More
@@ -202,14 +175,12 @@
           <div class="col-md-6">
             <div class="admission_detail-box">
               <h3>
-                Send Command
+                Humidity Chart
               </h3>
-              <input type="text" id="messageInput" placeholder="Endter a message">
-              <!--<button onclick="sendMessage()"> Send</button>-->
+
+              <canvas id="humidityChart"height: 250px; width: 100%;></canvas>
               <div class="">
-                <a class="call_to-btn btn_white-border" onclick="sendMessage()">
-                  Send
-                </a>
+
               </div>
             </div>
           </div>
@@ -238,11 +209,10 @@
           <div class="col-md-6">
             <div class="why_detail-box">
               <h3>
-                //
+                Gas Chart
               </h3>
-              <p>
-                //
-              </p>
+
+              <canvas id="gasChart"height: 250px; width: 100%;></canvas>
               <div class="">
                 <a href="" class="call_to-btn btn_white-border">
                   Read More
@@ -264,14 +234,12 @@
           <div class="col-md-6">
             <div class="determine_detail-box">
               <h3>
-                //
+                SendCommand
               </h3>
-              <p>
-                //
-              </p>
-              <div class="">
-                <a href="" class="call_to-btn btn_white-border">
-                  Read More
+              <input type="text" id="messageInput" placeholder="Endter a message">
+              <div class="" onclick="sendMessage()">
+                <a  class="call_to-btn btn_white-border">
+                  Send
                 </a>
               </div>
             </div>
@@ -516,8 +484,111 @@
 
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script>
+  //Temperature
+  const ctx = document.getElementById('temperatureChart').getContext('2d');
+  const temperatureChart = new Chart(ctx, {
+    type :'line',
+    data: {
+      labels: [],
+      datasets: [{
+        label: 'temperature',
+        data: [0],
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          display: true
+        },
+        y: {
+          display: true
+        }
+      }
+    }
+  });
+  //Humidity
+  const ctx1 = document.getElementById('humidityChart').getContext('2d');
+  const humidityChart = new Chart(ctx1, {
+    type :'line',
+    data: {
+      labels: [],
+      datasets: [{
+        label: 'humidity',
+        data: [0],
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          display: true
+        },
+        y: {
+          display: true
+        }
+      }
+    }
+  });
+  //Gas
+  const ctx2 = document.getElementById('gasChart').getContext('2d');
+  const gasChart = new Chart(ctx2, {
+    type :'line',
+    data: {
+      labels: [],
+      datasets: [{
+        label: 'gas',
+        data: [0],
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          display: true
+        },
+        y: {
+          display: true
+        }
+      }
+    }
+  });
 
- 
+    socket.addEventListener('message', (event) => {
+    const jsonData = JSON.parse(event.data);
+    const temperature = jsonData.temperature;
+    const humidity = jsonData.humidity;
+    const gas = jsonData.gas;
+
+    const time = new Date().toLocaleTimeString();
+    temperatureChart.data.labels.push(time);
+    temperatureChart.data.datasets[0].data.push(temperature);
+    temperatureChart.update();
+    console.log(temperature);
+
+    humidityChart.data.labels.push(time);
+    humidityChart.data.datasets[0].data.push(humidity);
+    humidityChart.update();
+    console.log(humidity);
+
+    gasChart.data.labels.push(time);
+    gasChart.data.datasets[0].data.push(gas);
+    gasChart.update();
+  })
+
+  </script>
+
+
 </body>
 
 </html>

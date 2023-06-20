@@ -109,16 +109,18 @@
       <div class="hero-container container">
         <div class="hero_detail-box">
           <h1>
-            Đồ án hệ thống nhúng không dây
+            Đồ án 
+            hệ thống 
+            nhúng không dây
           </h1>
           <p>
-            zcvzcvzxv
+
           </p>
-          <div class="hero_btn-continer">
+          <!--<div class="hero_btn-continer">
             <a href="" class="call_to-btn btn_white-border">
               Read More
             </a>
-          </div>
+          </div>-->
         </div>
         <div class="hero_img-container">
           <div>
@@ -138,7 +140,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="about_img-container">
-              <img src="images/about.png" alt="">
+              <img src="images/temp.png" alt="">
             </div>
           </div>
           <div class="col-md-6">
@@ -154,11 +156,11 @@
                 //nhan du lieu
                 </script>
               
-              <div class="">
+              <!--<div class="">
                 <a href="" class="call_to-btn btn_white-border">
                   Read More
                 </a>
-              </div>
+              </div>-->
             </div>
           </div>
         </div>
@@ -186,7 +188,7 @@
           </div>
           <div class="col-md-6">
             <div class="admission_img-container">
-              <img src="images/admission.png" alt="">
+              <img src="images/humidity.png" alt="">
             </div>
           </div>
         </div>
@@ -203,7 +205,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="why_img-container">
-              <img src="images/why.png" alt="">
+              <img src="images/gas.png" alt="">
             </div>
           </div>
           <div class="col-md-6">
@@ -213,11 +215,11 @@
               </h3>
 
               <canvas id="gasChart"height: 250px; width: 100%;></canvas>
-              <div class="">
+              <!--<div class="">
                 <a href="" class="call_to-btn btn_white-border">
                   Read More
                 </a>
-              </div>
+              </div>-->
             </div>
           </div>
         </div>
@@ -237,8 +239,8 @@
                 SendCommand
               </h3>
               <input type="text" id="messageInput" placeholder="Endter a message">
-              <div class="" onclick="sendMessage()">
-                <a  class="call_to-btn btn_white-border">
+              <div class="" >
+                <a  class="call_to-btn btn_white-border" onclick="sendMessage()">
                   Send
                 </a>
               </div>
@@ -282,10 +284,10 @@
                       <div class="col-md-9">
                         <div class="client_detail-box">
                           <h5>
-                            Phuc Nguyen
+
                           </h5>
                           <p>
-                            gay
+
                         </div>
                       </div>
                     </div>
@@ -300,7 +302,7 @@
                       <div class="col-md-9">
                         <div class="client_detail-box">
                           <h5>
-                            Chu Thành Nhân
+
                           </h5>
                           <p>
 
@@ -338,7 +340,7 @@
   <!-- end client section -->
 
 
-    <!-- contact section -->
+    <!-- contact section 
 
     <section class="contact_section ">
 
@@ -384,8 +386,10 @@
             </div>
           </div>
         </div>
-      </section>
-      <!-- end contact section -->
+      </section>-->
+
+      <!-- end contact section 
+
       <section class="info_section layout_padding-top">
         <div class="info_logo-box">
           <h2>
@@ -471,19 +475,21 @@
                   </div>
                 </div>
           </div>
-        </section>
+        </section>-->
 
-  <!-- footer section -->
+  <!-- footer section 
   <section class="container-fluid footer_section">
     <p>
       Copyright &copy; 2019
       <a href="https://html.design/"></a>
     </p>
   </section>
-  <!-- footer section -->
+  
+  footer section 
 
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>-->
+  
   <script>
   //Temperature
   const ctx = document.getElementById('temperatureChart').getContext('2d');
@@ -584,6 +590,7 @@
     gasChart.data.labels.push(time);
     gasChart.data.datasets[0].data.push(gas);
     gasChart.update();
+    console.log(gas);
   })
 
   </script>
